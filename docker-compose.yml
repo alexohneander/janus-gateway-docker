@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  janus-gateway:
+    image: 'alexohneander/janus-gateway:test'
+    command: ["/opt/janus/bin/janus", "-C", "/etc/janus/janus.jcfg"]
+    ports:
+      - "0.0.0.0:8188:8188"
+      - "0.0.0.0:8088:8088"
+      - "0.0.0.0:8089:8089"
+      - "0.0.0.0:8889:8889"
+      - "0.0.0.0:8000:8000"
+      - "0.0.0.0:7088:7088"
+      - "0.0.0.0:7089:7089"
+      - "0.0.0.0:10000-10200:10000-10200/udp"
+    volumes:
+      - "/etc/janus/janus.jcfg:/etc/janus/janus.jcfg"
+      - "/etc/janus/janus.transport.http.jcfg:/opt/janus/etc/janus/janus.transport.http.jcfg"
+    restart: always
